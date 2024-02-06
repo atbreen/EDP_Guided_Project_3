@@ -1,0 +1,212 @@
+[
+    {
+        "id": 1,
+        "name": "Tatooine",
+        "rebel_likelihood": 0.45
+    },
+    {
+        "id": 2,
+        "name": "Alderaan",
+        "rebel_likelihood": 1.0
+    },
+    {
+        "id": 8,
+        "name": "Naboo",
+        "rebel_likelihood": 0.65
+    },
+    {
+        "id": 14,
+        "name": "Kashyyyk",
+        "rebel_likelihood": 0.85
+    },
+    {
+        "id": 20,
+        "name": "Stewjon",
+        "rebel_likelihood": 0.15
+    },
+    {
+        "id": 21,
+        "name": "Eriadu",
+        "rebel_likelihood": 0.35
+    },
+    {
+        "id": 22,
+        "name": "Corellia",
+        "rebel_likelihood": 0.05
+    },
+    {
+        "id": 23,
+        "name": "Rodia",
+        "rebel_likelihood": 0.55
+    },
+    {
+        "id": 26,
+        "name": "Bestine IV",
+        "rebel_likelihood": 0.6
+    },
+    {
+        "id": 28,
+        "name": "Dagobah",
+        "rebel_likelihood": 0.2
+    },
+    {
+        "id": 29,
+        "name": "Trandosha",
+        "rebel_likelihood": 0.4
+    },
+    {
+        "id": 30,
+        "name": "Socorro",
+        "rebel_likelihood": 0.7
+    },
+    {
+        "id": 31,
+        "name": "Mon Cala",
+        "rebel_likelihood": 0.9
+    },
+    {
+        "id": 32,
+        "name": "Chandrila",
+        "rebel_likelihood": 0.8
+    },
+    {
+        "id": 33,
+        "name": "Sullust",
+        "rebel_likelihood": 0.95
+    },
+    {
+        "id": 34,
+        "name": "Toydaria",
+        "rebel_likelihood": 0.25
+    },
+    {
+        "id": 35,
+        "name": "Malastare",
+        "rebel_likelihood": 0.3
+    },
+    {
+        "id": 36,
+        "name": "Dathomir",
+        "rebel_likelihood": 0.75
+    },
+    {
+        "id": 37,
+        "name": "Ryloth",
+        "rebel_likelihood": 0.8
+    },
+    {
+        "id": 38,
+        "name": "Aleen Minor",
+        "rebel_likelihood": 0.4
+    },
+    {
+        "id": 39,
+        "name": "Vulpter",
+        "rebel_likelihood": 0.5
+    },
+    {
+        "id": 40,
+        "name": "Troiken",
+        "rebel_likelihood": 0.6
+    },
+    {
+        "id": 41,
+        "name": "Tund",
+        "rebel_likelihood": 0.1
+    },
+    {
+        "id": 42,
+        "name": "Haruun Kal",
+        "rebel_likelihood": 0.7
+    },
+    {
+        "id": 43,
+        "name": "Cerea",
+        "rebel_likelihood": 0.55
+    },
+    {
+        "id": 44,
+        "name": "Glee Anselm",
+        "rebel_likelihood": 0.65
+    },
+    {
+        "id": 45,
+        "name": "Iridonia",
+        "rebel_likelihood": 0.75
+    },
+    {
+        "id": 46,
+        "name": "Tholoth",
+        "rebel_likelihood": 0.35
+    },
+    {
+        "id": 47,
+        "name": "Iktotch",
+        "rebel_likelihood": 0.65
+    },
+    {
+        "id": 48,
+        "name": "Quermia",
+        "rebel_likelihood": 0.5
+    },
+    {
+        "id": 49,
+        "name": "Dorin",
+        "rebel_likelihood": 0.4
+    },
+    {
+        "id": 50,
+        "name": "Champala",
+        "rebel_likelihood": 0.55
+    },
+    {
+        "id": 51,
+        "name": "Mirial",
+        "rebel_likelihood": 0.45
+    },
+    {
+        "id": 52,
+        "name": "Serenno",
+        "rebel_likelihood": 0.1
+    },
+    {
+        "id": 53,
+        "name": "Concord Dawn",
+        "rebel_likelihood": 0.3
+    },
+    {
+        "id": 54,
+        "name": "Zolan",
+        "rebel_likelihood": 0.5
+    },
+    {
+        "id": 55,
+        "name": "Ojom",
+        "rebel_likelihood": 0.45
+    },
+    {
+        "id": 56,
+        "name": "Skako",
+        "rebel_likelihood": 0.25
+    },
+    {
+        "id": 57,
+        "name": "Muunilinst",
+        "rebel_likelihood": 0.1
+    },
+    {
+        "id": 58,
+        "name": "Shili",
+        "rebel_likelihood": 0.7
+    },
+    {
+        "id": 59,
+        "name": "Kalee",
+        "rebel_likelihood": 0.5
+    },
+    {
+        "id": 60,
+        "name": "Umbara",
+        "rebel_likelihood": 0.6
+    }
+]
