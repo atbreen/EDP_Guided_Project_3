@@ -1,3 +1,6 @@
+# %% [markdown]
+# ## generate_data.py
+
 # %%
 import csv
 import random
@@ -75,49 +78,63 @@ with open(OUTPUT_FILE, "w", newline="") as file:
     )
     writer.writerows(data_rows)
 
-print("\nData generation complete.")
+print("Data generation complete.")
 
+
+# %% [markdown]
+# ### Display troop_movements.csv as DataFrame
 
 # %%
 import pandas as pd
 df = pd.read_csv("troop_movements.csv")
 print(df)
 
+# %% [markdown]
+# ### Part 2: Build a prediction model
+
+# %%
 # Create grouped data showing counts of empire vs resistance.
 er = df.groupby("empire_or_resistance").size().reset_index(name="count")
 print(er.head())
 
-
+# %%
 # Create grouped data showing counts of characters by homeworld
 homeworld_counts = df.groupby("homeworld").size().reset_index(name="count")
 print(homeworld_counts.head())
 
+
+# %%
 # Created grouped data showing counts of characters by unit_type
 unit_type_counts = df.groupby("unit_type").size().reset_index(name="count")
 print(unit_type_counts.head())
 
-# Engineer a new feature called is_resistance with a True or False value based on empire_or_resiatance
+
+# %%
+# Engineer a new feature called is_resistance with a True or False value based on empire_or_resistance
 df['is_resistance'] = df["empire_or_resistance"].map(lambda x: x == "resistance")
 df.head()
 
+# %%
 # Create a bar plot using Seaborn showing Empire vs Resistance distribution
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 sns.barplot(x = 'empire_or_resistance',y='count',data = er)
 
+# %%
 # Create a prediction model using sklearn.tree.DecisionTreeClassifier that predicts if a character is joining either the Empire or the Resistance based on their homeworld and unit_type.
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import OrdinalEncoder
 from sklearn.model_selection import train_test_split
 
-
+# %%
 features = ["homeworld","unit_type"]
 # Convert categorical features to numeric using pd.get_dummies. 
 df1 = df.copy()
 X_encoded = pd.get_dummies(df[features])
 y_encoded = pd.get_dummies(df['empire_or_resistance'])
 
+# %%
 X_train, X_test, y_train, y_test = train_test_split(X_encoded, y_encoded, test_size=0.2, random_state=1)
 
 model = DecisionTreeClassifier()
@@ -126,6 +143,7 @@ model = model.fit(X_train,y_train)
 y_pred = model.predict(X_test)
 print(y_pred)
 
+# %%
 # Get feature importances
 importances = model.feature_importances_
 
@@ -143,26 +161,57 @@ plt.ylabel('Importance')
 plt.title('Feature Importances')
 plt.show()
 
+# %%
 # Save to model as a pickle file named trained_model.pkl
 import pickle
 filename = "trained_model.pkl"
 with open(filename, 'wb') as file:
       pickle.dump(model, file)
 
+# %% [markdown]
+# ### Part 3: Use the trained model with “real” data
+# 
+# Load data from troop_movements10m.csv (see Guided Project zip for file). This file contains 10 million records to be predicted. 
+# This data must be cleaned up a bit before it can be used:
+# 
+# ⦁	Some unit_type records have a value of invalid_unit. Replace that with unknown.
+# 
+# ⦁	Some location_x and location_Y values are missing. Use the ffill method to fill.
+# 
+# ⦁	Save the clean data into a Parquet file named troop_movements10m.parquet.
+# 
+# ⦁	You need to install pyarrow and fastparquet to support saving to a Parquet file.
+# 
+# pip install pyarrow
+# 
+# pip install fastparquet
+# 
+# Load the pickled model and load the data from the Parquet file into a data frame. Run the data through the model.
+# 
+
+# %%
 df_trained = pd.read_csv('troop_movements.csv')
+
+df_trained.head()
+
+# %%
 df_trained.unit_type.replace("invalid_unit","unknown")
 
+# %%
 df_trained.location_x.ffill()
 df_trained.location_y.ffill()
 
+
+# %%
 pquet = df_trained.to_parquet("clean_troopers.parquet")
 
+# %%
 with open("trained_model.pkl",'rb') as f: 
     model2 = pickle.load(f)
 
 parquet_db = pd.read_parquet('clean_troopers.parquet', engine = 'pyarrow')
 
-
+# %%
 features = ["homeworld","unit_type"]
 # Convert categorical features to numeric using pd.get_dummies. 
 X_encoded = pd.get_dummies(parquet_db[features])
@@ -171,9 +220,22 @@ y_encoded = pd.get_dummies(parquet_db['empire_or_resistance'])
 print(X_encoded)
 print(y_encoded)
 
+# %%
+print(X_encoded.head())
+
+# %%
 ypred = model2.predict(X_encoded)
+#print(ypred)
 
+temp = pd.Series(ypred.flatten())
+print(temp[0])
+df_trained['Predictions'] = temp.map(lambda x: x == 1 )
 
+#df["empire_or_resistance"].map(lambda x: x == "resistance")
+#df_trained
+df_trained.head()
+
+# %%
 importances = model2.feature_importances_
 
 # Create a DataFrame to hold the feature importances
