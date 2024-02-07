@@ -2,7 +2,7 @@ export const Input_Form= () => {
     return (
         <>
             <h2>Fill out the following form to test against model!!!</h2>
-            <form action="http://localhost/5000/api/get_result" method="GET">
+            <form action="http://127.0.0.1:5000/api/predict" method="POST">
                 <h4>Select a Planet</h4>
                 <select id = "homeworld" name = 'homeworld'>
                 <option value="Tatooine">Tatooine</option>
