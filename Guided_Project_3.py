@@ -75,14 +75,13 @@ with open(OUTPUT_FILE, "w", newline="") as file:
     )
     writer.writerows(data_rows)
 
-print("Data generation complete.")
+print("\nData generation complete.")
 
 
 # %%
 import pandas as pd
 df = pd.read_csv("troop_movements.csv")
 print(df)
-
 
 # Create grouped data showing counts of empire vs resistance.
 er = df.groupby("empire_or_resistance").size().reset_index(name="count")
@@ -144,23 +143,14 @@ plt.ylabel('Importance')
 plt.title('Feature Importances')
 plt.show()
 
-
-
 # Save to model as a pickle file named trained_model.pkl
 import pickle
 filename = "trained_model.pkl"
 with open(filename, 'wb') as file:
       pickle.dump(model, file)
 
-
-
 df_trained = pd.read_csv('troop_movements.csv')
-
-
-
-
 df_trained.unit_type.replace("invalid_unit","unknown")
-
 
 df_trained.location_x.ffill()
 df_trained.location_y.ffill()
@@ -173,8 +163,6 @@ with open("trained_model.pkl",'rb') as f:
 parquet_db = pd.read_parquet('clean_troopers.parquet', engine = 'pyarrow')
 
 
-
-
 features = ["homeworld","unit_type"]
 # Convert categorical features to numeric using pd.get_dummies. 
 X_encoded = pd.get_dummies(parquet_db[features])
@@ -183,9 +171,7 @@ y_encoded = pd.get_dummies(parquet_db['empire_or_resistance'])
 print(X_encoded)
 print(y_encoded)
 
-
 ypred = model2.predict(X_encoded)
-
 
 
 importances = model2.feature_importances_
